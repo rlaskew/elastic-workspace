@@ -6,11 +6,18 @@ Workspace for experimenting with ElasticSearch and ELK stack components
 + git config --global user.name "Richard Askew"
 
 ### Create EC2 Key Pair
-aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
++ aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
++ chmod 400 MyKeyPair.pem
+
+### Set some envs based on your AWS account
+STACK_NAME=elastic-demo-host-1
+VPC_ID=vpc-???
+SUBNET_ID=subnet-???
+KEY_PAIR=MyKeyPair
 
 ### Create Ubuntu 18 LTS EC2
 + aws cloudformation validate-template --template-body file://elastic-host.yml
-+ aws cloudformation create-stack --template-body file://elastic-host.yml --stack-name elastic-demo-host-1 --region us-east-1 --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=KeyNameParameter,ParameterValue=MyKeyPair ParameterKey=SubnetIdParameter,ParameterValue=sn-123434
++ aws cloudformation create-stack --template-body file://elastic-host.yml --stack-name ${STACK_NAME} --region us-east-1 --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=KeyNameParameter,ParameterValue=${KEY_PAIR} ParameterKey=SubnetIdParameter,ParameterValue=${SUBNET_ID} ParameterKey=VpcIdParameter,ParameterValue=${VPC_ID}
 + aws cloudformation delete-stack --stack-name elastic-demo-host-1 --region us-east-1
 
 ### Installation Guide URL

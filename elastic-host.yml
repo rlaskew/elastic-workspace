@@ -10,6 +10,9 @@ Parameters:
   SubnetIdParameter:
     Type: String
     Description: Enter Subnet ID
+  VpcIdParameter:
+    Type: String
+    Description: Enter Subnet ID
   InstanceTypeParameter:
     Type: String
     Default: t2.small
@@ -30,7 +33,6 @@ Resources:
         Type: "AWS::IAM::Role"
         Properties:
             Path: "/"
-            # RoleName: "CloudWatchFullAccess-AWSvsNewRelic"
             AssumeRolePolicyDocument: "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}"
             MaxSessionDuration: 3600
             ManagedPolicyArns: 
@@ -45,8 +47,7 @@ Resources:
     DemoSecurityGroup:
         Type: AWS::EC2::SecurityGroup
         Properties:
-          VpcId: "vpc-d88a99be"
-          # VpcId: !Ref VpcId
+          VpcId: !Ref VpcIdParameter
           GroupDescription: 22 SSH, 9200 Elastic, 5601 Kibana
           SecurityGroupIngress:
           - CidrIp: 0.0.0.0/0
@@ -77,7 +78,6 @@ Resources:
             EbsOptimized: false
             SecurityGroupIds: 
               - !Ref DemoSecurityGroup     
-              #- "sg-14ae545d"
             SourceDestCheck: true
             UserData:
              Fn::Base64: !Sub |
