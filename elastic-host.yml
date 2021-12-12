@@ -15,13 +15,14 @@ Parameters:
     Description: Enter Subnet ID
   InstanceTypeParameter:
     Type: String
-    Default: m5.large 
+    Default: t3.medium
     AllowedValues:
       - t2.medium
       - t2.large
       - t2.xlarge
       - t2.2xlarge
       - m5.large
+      - t3.medium
     Description: Enter t2.micro, t2.small, t2.medium. Default is t2.micro.
   ImageIdParameter:
     Type: String
@@ -41,12 +42,12 @@ Resources:
             ManagedPolicyArns: 
               - "arn:aws:iam::aws:policy/CloudWatchFullAccess"
             Description: "Allows EC2 instances to call AWS services on your behalf."
-    IAMProfile5:
-        Type: "AWS::IAM::InstanceProfile"
-        Properties:
-            Path: "/"
-            Roles:
-            - Ref: IAMRole5
+    # IAMProfile5:
+    #    Type: "AWS::IAM::InstanceProfile"
+    #    Properties:
+    #        Path: "/"
+    #        Roles:
+    #        - Ref: IAMRole5
     DemoSecurityGroup:
         Type: AWS::EC2::SecurityGroup
         Properties:
@@ -72,7 +73,7 @@ Resources:
     EC2Instance:
         Type: "AWS::EC2::Instance"
         Properties:
-            IamInstanceProfile: !Ref IAMProfile5
+          # IamInstanceProfile: !Ref IAMProfile5
             ImageId: !Ref ImageIdParameter
             InstanceType: !Ref InstanceTypeParameter
             KeyName: !Ref KeyNameParameter 

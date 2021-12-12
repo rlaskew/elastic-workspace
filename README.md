@@ -22,6 +22,8 @@ KEY_PAIR=MyKeyPair
 
 ### Installation Guide URL
 https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
+### Helpful firewall tips
+https://www.simplified.guide/elastic/kibana/install-on-ubuntu
 
 ### Installation Steps
 + wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
