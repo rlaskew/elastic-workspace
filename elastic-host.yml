@@ -15,19 +15,22 @@ Parameters:
     Description: Enter Subnet ID
   InstanceTypeParameter:
     Type: String
-    Default: t2.small
+    Default: m5.large 
     AllowedValues:
-      - t2.micro
-      - t2.small
       - t2.medium
+      - t2.large
+      - t2.xlarge
+      - t2.2xlarge
+      - m5.large
     Description: Enter t2.micro, t2.small, t2.medium. Default is t2.micro.
   ImageIdParameter:
     Type: String
-    Default: ami-042e8287309f5df03
+    Default: ami-0279c3b3186e54acd 
     AllowedValues:
       - ami-0742b4e673072066f
       - ami-042e8287309f5df03 
-    Description: ami-0742b4e673072066f is Amazon Linux 2 x86 in us-east-1, ami-042e8287309f5df03 is x86 Ubuntu 20.04 in us-east-1 
+      - ami-0279c3b3186e54acd
+    Description: ami-0279c3b3186e54acd is Ubuntu 18.04 in us-east-1, ami-0742b4e673072066f is Amazon Linux 2 x86 in us-east-1, ami-042e8287309f5df03 is x86 Ubuntu 20.04 in us-east-1 
 Resources:
     IAMRole5:
         Type: "AWS::IAM::Role"
@@ -54,6 +57,10 @@ Resources:
             FromPort: 22
             IpProtocol: tcp
             ToPort: 22
+          - CidrIp: 0.0.0.0/0
+            FromPort: 80 
+            IpProtocol: tcp
+            ToPort: 80 
           - CidrIp: 0.0.0.0/0
             FromPort: 9200
             IpProtocol: tcp
@@ -88,17 +95,24 @@ Resources:
 
                  # STEP 1 (Ubuntu):  do updates
                  apt-get update -y
+                 apt-get install nginx -y
 
                  # STEP 2 (ubuntu): add elastic related configs
                  wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
-                 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee /etc/apt/sources.list.d/elastic-7.x.list
                  apt-get install apt-transport-https -y
+                 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee /etc/apt/sources.list.d/elastic-7.x.list
+                 apt-get update -y
                  apt-get install elasticsearch -y
+                 apt-get install kibana -y
 
                  # STEP 3: restart daemon
                  systemctl daemon-reload
                  systemctl enable elasticsearch.service
+                 systemctl enable kibana.service
+                 systemctl enable nginx.service
                  systemctl start elasticsearch.service
+                 systemctl start kibana.service
+                 systemctl start nginx.service
 
                  # STEP 4: all done 
                  echo "ALL DONE with USER DATA!!!"
