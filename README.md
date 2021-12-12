@@ -18,7 +18,7 @@ KEY_PAIR=MyKeyPair
 ### Create Ubuntu 18 LTS EC2
 + aws cloudformation validate-template --template-body file://elastic-host.yml
 + aws cloudformation create-stack --template-body file://elastic-host.yml --stack-name ${STACK_NAME} --region us-east-1 --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=KeyNameParameter,ParameterValue=${KEY_PAIR} ParameterKey=SubnetIdParameter,ParameterValue=${SUBNET_ID} ParameterKey=VpcIdParameter,ParameterValue=${VPC_ID}
-+ aws cloudformation delete-stack --stack-name elastic-demo-host-1 --region us-east-1
++ aws cloudformation delete-stack --stack-name ${STACK_NAME} --region us-east-1
 
 ### Installation Guide URL
 https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
