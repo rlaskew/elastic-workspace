@@ -2,11 +2,14 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: "Create EC2 for script execution"
 Metadata:
   EC2Instance:
-    Description: "Description goes here"
+    Description: "EC2 for experimenting with Elastic"
 Parameters:
   KeyNameParameter:
     Type: String
     Description: Enter key name
+  SubnetIdParameter:
+    Type: String
+    Description: Enter Subnet ID
   InstanceTypeParameter:
     Type: String
     Default: t2.small
@@ -66,7 +69,7 @@ Resources:
             InstanceType: !Ref InstanceTypeParameter
             KeyName: !Ref KeyNameParameter 
             AvailabilityZone: "us-east-1b"
-            SubnetId: "subnet-1792365f"
+            SubnetId: !Ref SubnetIdParameter 
             BlockDeviceMappings:
               - DeviceName: /dev/xvda
                 Ebs:
