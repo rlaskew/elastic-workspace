@@ -1,13 +1,16 @@
 # elastic-workspace
 Workspace for experimenting with ElasticSearch and ELK stack components
 
+### Git config for temp git workspace
++ git config --global user.email "richardaskew@yahoo.com"
++ git config --global user.name "Richard Askew"
 
 ### Create EC2 Key Pair
 aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
 
 ### Create Ubuntu 18 LTS EC2
 + aws cloudformation validate-template --template-body file://elastic-host.yml
-+ aws cloudformation create-stack --template-body file://elastic-host.yml --parameters file://parameters.json --stack-name elastic-demo-host-1 --region us-east-1 --capabilities CAPABILITY_NAMED_IAM
++ aws cloudformation create-stack --template-body file://elastic-host.yml --stack-name elastic-demo-host-1 --region us-east-1 --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=KeyNameParameter,ParameterValue=MyKeyPair ParameterKey=SubnetIdParameter,ParameterValue=sn-123434
 + aws cloudformation delete-stack --stack-name elastic-demo-host-1 --region us-east-1
 
 ### Installation Guide URL
