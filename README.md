@@ -6,7 +6,9 @@ Workspace for experimenting with ElasticSearch and ELK stack components
 aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
 
 ### Create Ubuntu 18 LTS EC2
-TODO
++ aws cloudformation validate-template --template-body file://elastic-host.yml
++ aws cloudformation create-stack --template-body file://elastic-host.yml --parameters file://parameters.json --stack-name elastic-demo-host-1 --region us-east-1 --capabilities CAPABILITY_NAMED_IAM
++ aws cloudformation delete-stack --stack-name elastic-demo-host-1 --region us-east-1
 
 ### Installation Guide URL
 https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
