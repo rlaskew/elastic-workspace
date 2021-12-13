@@ -2,8 +2,7 @@
 Workspace for experimenting with ElasticSearch and ELK stack components
 
 ### Git config for temp git workspace
-+ git config --global user.email "placeholder@noreply.com"
-+ git config --global user.name "Place Holder"
++ git config --global user.email "placeholder@noreply.com" & git config --global user.name "Place Holder"
 
 ### Create EC2 Key Pair
 + aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
