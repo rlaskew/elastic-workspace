@@ -25,3 +25,6 @@
 + wget media.sundog-soft.com/es/flattened.txt
 + wget media.sundog-soft.com/es/exceptions.txt
 
+### auto complete and related
++ wget media.sundog-soft.com/es/sayt.txt
+
