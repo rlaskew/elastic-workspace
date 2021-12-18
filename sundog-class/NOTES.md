@@ -28,3 +28,13 @@
 ### auto complete and related
 + wget media.sundog-soft.com/es/sayt.txt
 
+## import via script
++ wget http://files.grouplens.org/datasets/movielens/ml-latest-small.zip
++ wget media.sundog-soft.com/es7/MoviesToJson.py
++ curl -XPUT 127.0.0.1:9200/_bulk --data-binary @moremovies.json
+
+## import via python library 
++ wget http://media.sundog-soft.com/es7/IndexRatings.py
+
+## script exercise
++ wget http://media.sundog-soft.com/es7/IndexTags.py
