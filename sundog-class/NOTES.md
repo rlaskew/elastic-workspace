@@ -38,3 +38,11 @@
 
 ## script exercise
 + wget http://media.sundog-soft.com/es7/IndexTags.py
+
+## from https://askubuntu.com/questions/1327737/mysql-connector-java
++ sudo apt-add-repository universe
++ sudo apt-get update
++ sudo apt-get install libmysql-java
+
+## logstash and mysql
++ wget  http://files.grouplens.org/datasets/movielens/ml-100k.zip
