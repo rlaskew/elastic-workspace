@@ -46,3 +46,10 @@
 
 ## logstash and mysql
 + wget  http://files.grouplens.org/datasets/movielens/ml-100k.zip
+
+## CSV section
++ curl -O https://raw.githubusercontent.com/coralogix-resources/elk-course-samples/master/csv-schema-short-numerical.csv
++ sudo wget -P /etc/logstash/conf.d https://raw.githubusercontent.com/coralogix-resources/elk-course-samples/master/csv-read.conf
++ sudo wget -P /etc/logstash/conf.d https://raw.githubusercontent.com/coralogix-resources/elk-course-samples/master/csv-read-drop.conf
++ wget http://media.sundog-soft.com/es/sample-json.log
++ wget http://media.sundog-soft.com/es/sample-json-split.log
