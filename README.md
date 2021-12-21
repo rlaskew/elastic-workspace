@@ -33,3 +33,7 @@ https://www.simplified.guide/elastic/kibana/install-on-ubuntu
 + sudo /bin/systemctl enable elasticsearch.service
 + sudo /bin/systemctl start elasticsearch.service
 + curl http://localhost:9200
+
+## common grok patters
++ sudo git clone https://github.com/coralogix-resources/logstash.git /etc/logstash/conf.d/logstash
++ wget media.sundog-soft.com/es/grok.txt
