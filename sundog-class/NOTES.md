@@ -53,3 +53,8 @@
 + sudo wget -P /etc/logstash/conf.d https://raw.githubusercontent.com/coralogix-resources/elk-course-samples/master/csv-read-drop.conf
 + wget http://media.sundog-soft.com/es/sample-json.log
 + wget http://media.sundog-soft.com/es/sample-json-split.log
+
+## grok section
++ wget http://media.sundog-soft.com/es/sample.log
++ wget http://media.sundog-soft.com/es/grok-example.conf
++ wget http://media.sundog-soft.com/es/grok-example-02.conf
